@@ -14,9 +14,9 @@ int main(void) {
 	string moneyNAME;
 	double priceREGULAR, priceFANCY, priceFRITTER, priceTOTAL, priceTAX, pricePAID, priceCHANGE;
 	//Receive the amount of 
-	cout << "How many regular donuts are we havin' today? "; cin >> donutREGULAR;
-	cout << "And about how many of thems fancy donuts? "; cin >> donutFANCY;
-	cout << "And how about them fritters, they are delectable you know, how many of them? "; cin >> donutFRITTER;
+	cout << "Number of regular donuts ordered: "; cin >> donutREGULAR;
+	cout << "Number of fancy donuts ordered: "; cin >> donutFANCY;
+	cout << "Number of apple fritters ordered:  "; cin >> donutFRITTER;
 
 	//Gets the price of the regular donuts
 	//the first part, due to int/int = int, will only work if donutREGULAR is > 12, which is the only case that the donzen discount applies
@@ -34,13 +34,14 @@ int main(void) {
 	priceTOTAL *= TAXRATE;
 
 	//This rounds off to the nearest penny the price total, which permits exact change to be provided
-	priceTOTAL = (priceTOTAL * 1000);				//sets the variable up to be integered
-	priceTOTAL = (int)priceTOTAL % 10 > 4 ?		//this checks for if the variable has more than 4 decipennies
-		(											//if it has more than 4 decipennies it rounds up
-			priceTOTAL + (10 - (int)priceTOTAL % 10)	//as seen here
-			) : (										//if it has fewer than 4 decipennies it rounds down
-				priceTOTAL
-				);
+	priceTOTAL = (priceTOTAL * 1000);			//sets the variable up to be integered
+	priceTOTAL = (int)priceTOTAL % 10 > 4 ?			//this checks for if the variable has more than 4 decipennies
+		(						//if it has more than 4 decipennies it rounds up
+		priceTOTAL + (10 - (int)priceTOTAL % 10)	//as seen here
+		) : (						//if it has fewer than 4 decipennies it rounds down
+		priceTOTAL
+		);
+	
 	//this eliminates any stragler centipennies or smaller denominations and then reconverts it into a floating point number
 	priceTOTAL = ((int)(priceTOTAL)) / 1000.0;
 
@@ -48,9 +49,10 @@ int main(void) {
 	//the set precision abuses the fact that we use base 10 to find the total whole digit of a number, when the log10 of it is rounded up
 	//we then add 2 to this to account for the fact we do not use parts of pennies in the states
 	//we then request the amount of money the user is paying with
-	cout << "Ok your total today will be right abouts $" << setprecision(ceil(log10(priceTOTAL)) + 2) << priceTOTAL << " will you be paying cash or cash?" << endl
-		<< "Haha, Okay now how much are you paying with? ";
-	cin >> pricePAID;
+	cout << "Customer pays $" << setprecision(ceil(log10(priceTOTAL)) + 2) << priceTOTAL << endl
+		<< "Customer owes $"; cin >> pricePAID;
+	
+	//reducing variable clutter
 	priceCHANGE = pricePAID - priceTOTAL;
 
 	if (priceCHANGE)
@@ -73,16 +75,16 @@ int main(void) {
 	//then reduce the amount to the amount without that amount
 	moneyFACTOR = 500;	 //initalize the number of pennies the amount is worth
 	moneyNAME = "five";	 //initialize the name of the currency, does not work with pennies
-	if ((int)priceCHANGE / moneyFACTOR)												//returns true if you would get that bill in return
-	{																				//
+	if ((int)priceCHANGE / moneyFACTOR)											//returns true if you would get that bill in return
+	{															//
 		if ((int)priceCHANGE / moneyFACTOR-1)										//returns true if the number of bills is > 1
-		{																			//
-			cout << (int)priceCHANGE / moneyFACTOR << " " << moneyNAME << "s, ";	//puts out the bills
-		} else																		//
-		{																			//
-			cout << "1 " << moneyNAME << ", ";										//puts out 1 bill
-		}																			//
-	}																				//
+		{														//
+		cout << (int)priceCHANGE / moneyFACTOR << " " << moneyNAME << "s, ";	//puts out the bills			//
+		} else														//
+		{														//
+			cout << "1 " << moneyNAME << ", ";									//puts out 1 bill
+		}														//
+	}															//
 	priceCHANGE = (int)priceCHANGE%moneyFACTOR;										//gets the number of pennies without the bills taken out
 	
 	moneyFACTOR = 100;	 
