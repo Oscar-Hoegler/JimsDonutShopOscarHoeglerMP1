@@ -9,11 +9,20 @@ using namespace std;
 
 int main(void) {
 	//Initialization of variables
+	//Setting the tax rate for easier changing later
 	const double TAXRATE = 1.075;
-	int donutREGULAR = 0, donutFANCY = 0, donutFRITTER = 0, moneyFACTOR;
+	
+	//setting up the three types of donuts
+	int donutREGULAR = 0, donutFANCY = 0, donutFRITTER = 0;
+	
+	//used for getting change later
+	int moneyFACTOR;
 	string moneyNAME;
+	
+	//setting up the variable prices that will be encountered later
 	double priceREGULAR, priceFANCY, priceFRITTER, priceTOTAL, priceTAX, pricePAID, priceCHANGE;
-	//Receive the amount of 
+	
+	//Receive the quantityies of the three different type of pastrie
 	cout << "Number of regular donuts ordered: "; cin >> donutREGULAR;
 	cout << "Number of fancy donuts ordered: "; cin >> donutFANCY;
 	cout << "Number of apple fritters ordered:  "; cin >> donutFRITTER;
@@ -50,7 +59,7 @@ int main(void) {
 	//we then add 2 to this to account for the fact we do not use parts of pennies in the states
 	//we then request the amount of money the user is paying with
 	cout << "Customer pays $" << setprecision(ceil(log10(priceTOTAL)) + 2) << priceTOTAL << endl
-		<< "Customer owes $"; cin >> pricePAID;
+	     << "Customer owes $"; cin >> pricePAID;
 	
 	//reducing variable clutter
 	priceCHANGE = pricePAID - priceTOTAL;
@@ -94,8 +103,7 @@ int main(void) {
 		if ((int)priceCHANGE / moneyFACTOR - 1)								
 		{																	
 			cout << (int)priceCHANGE / moneyFACTOR << " " << moneyNAME << "s, ";
-		}
-		else																
+		} else																
 		{																	
 			cout << "1 " << moneyNAME << ", ";								
 		}																	
@@ -109,8 +117,7 @@ int main(void) {
 		if ((int)priceCHANGE / moneyFACTOR - 1)
 		{
 			cout << (int)priceCHANGE / moneyFACTOR << " " << moneyNAME << "s, ";
-		}
-		else
+		} else
 		{
 			cout << "1 " << moneyNAME << ", ";
 		}
@@ -124,8 +131,7 @@ int main(void) {
 		if ((int)priceCHANGE / moneyFACTOR - 1)
 		{
 			cout << (int)priceCHANGE / moneyFACTOR << " " << moneyNAME << "s, ";
-		}
-		else
+		} else
 		{
 			cout << "1 " << moneyNAME << ", ";
 		}
@@ -139,8 +145,7 @@ int main(void) {
 		if ((int)priceCHANGE / moneyFACTOR - 1)
 		{
 			cout << (int)priceCHANGE / moneyFACTOR << " " << moneyNAME << "s, ";
-		}
-		else
+		} else
 		{
 			cout << "1 " << moneyNAME << ", ";
 		}
@@ -153,8 +158,7 @@ int main(void) {
 		if ((int)priceCHANGE / moneyFACTOR - 1)
 		{
 			cout << (int)priceCHANGE / moneyFACTOR << " pennies";
-		}
-		else
+		} else
 		{
 			cout << "1 penny";
 		}
